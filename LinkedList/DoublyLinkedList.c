@@ -41,7 +41,7 @@ void insertLast(int data) {
 
 void deleteBeg() {
     if(head == NULL) {
-        printf("LinkedList Underflow!\n");
+        printf("LinkedList is empty!\n");
         return;
     }
     int element = head->data;
@@ -55,7 +55,7 @@ void deleteLast()
 {
     if (tail == NULL)                 //    12   23  5   46  45
         {
-        printf("LinkedList Underflow!\n");
+        printf("LinkedList is empty!\n");
         return;
     }
     int element = tail->data;
@@ -67,7 +67,7 @@ void deleteLast()
 
 void displayBeg() {
     if(head==NULL && tail == NULL) {
-        printf("LinkedList Underflow!\n");
+        printf("LinkedList is empty!\n");
         return;
     }
     struct Node *temp = head;
@@ -82,7 +82,7 @@ void displayBeg() {
 void displayLast() {
     if (tail == NULL && head == NULL)
     {
-        printf("\nQueue Underflow!\n");
+        printf("\nLinkedList is empty!\n");
         return;
     }
     struct Node *temp = tail;
