@@ -7,4 +7,5 @@ This will help you in learning Data Structures using C.
 	<li>Stacks</li>
 	<li>Queues</li>
 	<li>Linked List</li>
+	<li>Tree - BST</li>
 </ul>
