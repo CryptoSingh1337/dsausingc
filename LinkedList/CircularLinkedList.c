@@ -8,108 +8,91 @@ struct Node {
 
 int length = 0;
 
-//To remove from begining of the list
-int removeBegin() {
-    if(head == NULL) {
-        printf("Linked List is empty!");
-        return -1;
-    }
-    int element = head->data;
-    head = head->next;
-    length--;
-    return element;
-}
-
-//To remove from last of the list
-int removeLast() {
-    if(head == NULL) {
-        printf("Linked List is empty!");
-        return -1;
-    }
-    struct Node* temp = head;
-    while(temp->next->next != NULL) {
-        temp = temp->next;
-    }
-    int element = temp->next->data;
-    temp->next = NULL;
-    length--;
-    return element;
-}
-
-//To remove form middle of the list
-int removeIndex(int index) {
-    if (head == NULL || index > length){
-        if(index > length)
-            printf("Invalid Index!");
-        else
-            printf("Linked List is Empty!");
-        return -1;
-    }
-    struct Node *temp = head;
-    if(index == 0) {
-        head=temp->next;
-        length--;
-        return index;
-    }
-    int count = 0;
-    while(count < index-1) {
-        temp = temp->next;
-        count++;
-    }
-    temp->next = temp->next->next;
-    length--;
-    return index;
-}
-
-//This will insert the node at the beginning of List
-void insertBeg(int data) {
+void prepend(int data) {
     struct Node* node = (struct Node*)malloc(sizeof(struct Node));
     node->data = data;
     if(head == NULL) {
-        node->next = NULL;
         head = node;
+        node->next = head;
         length++;
         return;
     }
     node->next = head;
+    struct Node *temp = head;
+    while(temp->next != head) {
+        temp = temp->next;
+    }
     head = node;
+    temp->next = head;
     length++;
 }
 
-//This will insert the node at the end of List
-void insertLast(int data) {                
+void append(int data) {
     struct Node* node = (struct Node*)malloc(sizeof(struct Node));
     node->data = data;
-    node->next = NULL;
     if(head == NULL) {
         head = node;
+        node->next = head;
         length++;
         return;
     }
     struct Node* temp = head;
-    while(temp->next != NULL) {
+    while(temp->next != head) {
         temp = temp->next;
     }
+    node->next = head;
+    temp->next = node;
+    length++;
+}
+
+void insert(int index, int data) {
+    struct Node* node = (struct Node*)malloc(sizeof(struct Node));
+    node->data = data;
+    if(head == NULL) {
+        head = node;
+        node->next = head;
+        length++;
+        return;
+    }
+    if(index == 0) {
+        prepend(data);
+        return;
+    }
+    if(index >= length-1) {
+        append(data);
+        return;
+    }
+    int i = 1;
+    struct Node* temp = head;
+    while(i < index) {
+        temp = temp->next;
+        i++;
+    }
+    node->next = temp->next;
     temp->next = node;
     length++;
 }
 
 void display() {
     struct Node* temp = head;
-    while(temp->next != NULL) {
+    while(temp->next != head) {
         printf("%d ", temp->data);
         temp = temp->next;
     }
-    printf("%d ", temp->data);
+    printf("%d", temp->data);
+    printf("\n");
 }
 
 int main() {
-    insertLast(1);
-    insertLast(2);
-    insertLast(3);
-    insertLast(4);
-    insertBeg(0);
+    append(0);
+    append(1);
+    append(2);
+    append(3);
+    append(4);
     display();
-    printf("\n%d\n", removeIndex(1));
+    prepend(5);
     display();
+    insert(3, 6);
+    display();
+    return 0;
 }
