@@ -1,5 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
+#define MAX(x, y) (((x) > (y)) ? (x) : (y))
 
 struct Node {
     int data;
@@ -58,7 +59,7 @@ void lookup(int element) {
     struct Node* temp = root;
     while(temp != NULL) {
         if(temp->data == element) {
-            printf("\nElement is present!");
+            printf("Element is present!\n");
             return;
         } else if(temp->data > element) {
             temp = temp->left;
@@ -66,7 +67,19 @@ void lookup(int element) {
             temp = temp->right;
         }
     }
-    printf("\nElement is not present!");
+    printf("Element is not present!\n");
+}
+
+int getHeight(struct Node* temp) {
+    int height = 0;
+    if(temp == NULL) {
+        return 0;
+    }
+    int lHeight = getHeight(temp->left);
+    int rHeight = getHeight(temp->right);
+    if(lHeight > rHeight)
+        return lHeight+1;
+    return rHeight+1;
 }
 
 void inOrderTraverse(struct Node* temp) {
@@ -103,11 +116,14 @@ int main() {
     insert(0);
     insert(5);
     insert(2);
+    insert(6);
     inOrderTraverse(root);
     printf("\n");
     preOrderTraverse(root);
     printf("\n");
     postOrderTraverse(root);
+    printf("\n");
     lookup(10);
+    printf("Height : %d", getHeight(root));
     return 0;
 }
