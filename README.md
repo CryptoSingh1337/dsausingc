@@ -1,5 +1,5 @@
 # REPOSITORY FOR DATA STRUCTURES USING C.
-This will help you in learning Data Structures using C.
+This will help you in learning Data Structures using C by implementing various data structures.
 
 ### Contents
 <ul> 
