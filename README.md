@@ -8,4 +8,6 @@ This will help you in learning Data Structures using C by implementing various d
 	<li>Queues</li>
 	<li>Linked List</li>
 	<li>Tree - BST</li>
+	<li>Searching - Linear and Binary</li>
+	<li>Sorting - Bubble, Selection, Insertion, Merge, Quick</li>
 </ul>
